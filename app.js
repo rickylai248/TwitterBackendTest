@@ -3,13 +3,36 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
-var session = require("express-session");
+var session = require('express-session');
+var okta = require("@okta/okta-sdk-nodejs");
+var ExpressOIDC = require("@okta/oidc-middleware").ExpressOIDC;
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+// Configure credentials for oktaClient and ExpressOIDC
+var oktaClient = new okta.Client({
+  orgUrl: '{yourOktaOrgUrl}',
+  token: '{yourOktaToken}'
+});
+const oidc = new ExpressOIDC({
+  issuer: "{yourOktaOrgUrl}/oauth2/default",
+  client_id: {yourClientId},
+  client_secret: {yourClientSecret},
+  redirect_uri: 'http://localhost:3000/users/callback',
+  scope: "openid profile",
+  routes: {
+    login: {
+      path: "/users/login"
+    },
+    callback: {
+      path: "/users/callback",
+      defaultRedirect: "/dashboard"
+    }
+  }
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
