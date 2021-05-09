@@ -42,7 +42,7 @@ module.exports = app;
 
 
 // Testing local app with Hello World
-const port = 3000
+/*const port = 3000
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -51,3 +51,4 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
+*/
