@@ -34,6 +34,14 @@ const oidc = new ExpressOIDC({
   }
 });
 
+function loginRequired(req, res, next) {
+  if (!req.user) {
+    return res.status(401).render("unauthenticated");
+  }
+
+  next();
+}
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
