@@ -1,0 +1,17 @@
+{
+  "name": "twitterbackendtest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "knex": "^0.95.4",
+    "pg": "^8.6.0"
+  }
+}
